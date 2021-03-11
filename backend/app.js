@@ -3,20 +3,19 @@ const mysql = require('mysql2/promise')
 
 		const express = require('express')
 		const bodyparser = require('body-parser')
+		const apirouter = require('./appapi/appapi')
 		const app = express()
 
 		app.use(bodyparser.urlencoded({extended: true}))
 		app.use(bodyparser.json())
 		app.use(bodyparser.raw())
 		
-		app.get('/*', async (req, res) => {
-			//First try these lines
-			//res.send("HELLO WORLD")
-			
-			//Then uncomment these lines
-			var [rows, fields] = await dbconfig.conn.execute("SELECT * FROM users");
-			res.send({rows})
+		app.use('/appapi', apirouter)
+		app.get('*', (req, res) => {
+			res.json({error: true, error_message: "Heyy There, Thanks for reaching us"})
+		})
+		app.listen(3000, () => {
+			console.log("We Are Good To Go")
 		})
 		
-		app.listen(3000, () => console.log("We Are Good To Go"))
 	

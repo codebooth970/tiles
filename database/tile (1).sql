@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2021 at 09:14 AM
+-- Generation Time: Mar 11, 2021 at 12:27 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `tile`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logintokens`
+--
+
+CREATE TABLE `logintokens` (
+  `serial_id` bigint(20) UNSIGNED NOT NULL,
+  `userid` bigint(20) UNSIGNED NOT NULL,
+  `token` varchar(300) NOT NULL,
+  `tokenvalidity` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `logintokens`
+--
+
+INSERT INTO `logintokens` (`serial_id`, `userid`, `token`, `tokenvalidity`) VALUES
+(48, 48, '$2b$08$tvAmXD8I2yeYp0v8eI3OBe.v3yo4Vd6M4gxNWAJCr6jMQ0gWfd/fG', 1615462328);
 
 -- --------------------------------------------------------
 
@@ -62,11 +82,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`serial_id`, `firstname`, `lastname`, `emailid`, `password`, `creationtime`) VALUES
-(10, 'aasem', 'siddiqui', 'siddiquiaasem909@gmail.com', 'Siddiqui', 2);
+(47, 'aasem', 'siddiqui', 'siddiquiaasem909@gmail.com', '$2b$08$.2TY5wypRmIQGdpfqBYyQuZwZ79sKifHKmn.whEiE6Un12B/.WZWK', 1615450177),
+(64, 'aasemejf', 'ef', 'sam@gmail.com', '$2b$08$A//lUHSMyhRor8SLsFchtuD6/ZsGo6bL7W8ak9T7aQoIoqOacwD6u', 1615460528);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `logintokens`
+--
+ALTER TABLE `logintokens`
+  ADD PRIMARY KEY (`serial_id`);
 
 --
 -- Indexes for table `tasks`
@@ -85,6 +112,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `logintokens`
+--
+ALTER TABLE `logintokens`
+  MODIFY `serial_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
@@ -94,7 +127,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `serial_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `serial_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
